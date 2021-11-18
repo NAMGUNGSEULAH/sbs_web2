@@ -25,14 +25,15 @@ header { margin-bottom: 20px; }
     font-weight: 400;
     letter-spacing: -0.3px;
  }
-#userMenu .list_menu { 
+#userMenu .list_menu {
     /* float: right; */
     display: flex;
     justify-content: flex-end;
  }
+
 #userMenu .menu { 
     position: relative; 
-    /* float: left; */
+    /*float: left;*/ 
 }
 
 #userMenu .menu:not(.lst)::after {
@@ -55,9 +56,10 @@ header { margin-bottom: 20px; }
     left: 0;
     top: 24px;
     width: 120px;
-    padding: 6px 9px;
+    padding: 4px 9px;
     border: 1px solid #ddd;
     background-color: #fff;
+    z-index: 1001;
 }
 
 /* 고객센터 메뉴에 마우스 올렸을 때 */
@@ -73,26 +75,23 @@ header { margin-bottom: 20px; }
     top: 10px;
     width: 8px;
     height: 5px;
-    background: url(background: url(https://res.kurly.com/pc/ico/1908/ico_down_8x5.png) no-repeat 0 0;
+    background: url(https://res.kurly.com/pc/ico/1908/ico_down_8x5.png) no-repeat 0 0;
 }
 
 
 /* header - headerLogo */
 #headerLogo { position: relative; width: 1050px; height: 63px; margin: 0 auto; }
 #headerLogo .logo { 
-    /*position으로 가운데*/
-    /* position: absolute; left: 50%; transform: translateX(-50%);  */
-    
-    /* text-align 으로 가운데  */
-    /* text-align: center; */
-    
+    /* position 으로 가운데 */   /* position: absolute; left: 50%; transform: translateX(-50%);  */
+    /* text-align 으로 가운데 */ /* text-align: center; */
     /* flex 로 가운데 */
     display: flex;
     justify-content: center;
 }
-#headerLogo .logo img { width: 103px; height: 79px; }
+#headerLogo .logo img { width: 103px; height: 79px;}
 
 /* header - gnb */
+
 
 #gnb {
     position: sticky;
@@ -102,13 +101,13 @@ header { margin-bottom: 20px; }
     justify-content: center;
 }
 
-#gnb .gnb_kerly {
+#gnb .gnb_kurly {
     width: 1050px;
     background-color: #fff;
     letter-spacing: -0.03px;
 }
 
-#gnb .inner_gnbkerly {
+#gnb .inner_gnbkurly {
     position: relative;
     width: 1050px;
     height: 56px;
@@ -121,7 +120,8 @@ header { margin-bottom: 20px; }
     margin: 0 auto;
 }
 
-#gnb .gnb_main ul.gnb li a {
+
+#gnb .gnb_main ul.gnb a {
     overflow: hidden;
     float: left;
     width: 124px;
@@ -133,9 +133,9 @@ header { margin-bottom: 20px; }
     text-align: center;
 }
 
-#gnb .gnb_main ul.gnb li a .txt { font-weight: 700; }
+#gnb .gnb_main ul.gnb a .txt { font-weight: 700; }
 
-#gnb .gnb_main ul.gnb li a span:hover { color: #5f0000; border-bottom: 1.5px solid #5f0000; }
+#gnb .gnb_main ul.gnb a span:hover { color: #5f0080; border-bottom: 1.5px solid #5f0080;}
 
 #gnb .gnb_main .menu1 .ico {
     float: left;
@@ -187,6 +187,7 @@ header { margin-bottom: 20px; }
     background: url(https://res.kurly.com/pc/ico/2008/ico_delivery_setting_done.svg) no-repeat 50% 50%;
     font-size: 0;
     text-indent: -9999px;
+    cursor: pointer;
 }
 
 #gnb .cart_count {
@@ -207,10 +208,120 @@ header { margin-bottom: 20px; }
     background: url(https://res.kurly.com/pc/service/common/2011/ico_cart.svg) no-repeat 50% 50%;
 }
 
+
+/* 카테고리 풀다운 메뉴 */
+#gnb .gnb_sub {
+    display: none;
+    /* display: block; */
+    overflow: hidden;
+    position: absolute;
+    z-index: 300;
+    left: 0;
+    top: 55px;
+    width: 213px;
+    padding-top: 1px;
+}
+#gnb .gnb_sub:hover {
+    width: 450px;
+}
+
+/* 1차 메뉴에 마우스를 올렸을 때, 2차 메뉴 출력 */
+#gnb .gnb_sub .inner_sub ul.gnb_menu li:hover > ul.sub_menu {
+    display: block;
+}
+
+/* 1차 메뉴 */
+#gnb .gnb_sub .inner_sub {
+    width: 100%;
+    border: 1px solid #ddd;
+    background: url(https://res.kurly.com/pc/service/common/1908/bg_gnb_sub_v3.png) repeat-y 0 0;
+}
+
+#gnb .gnb_sub .inner_sub ul.gnb_menu {
+    width: 219px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#gnb .gnb_sub .inner_sub ul.gnb_menu li {
+    width: 100%;
+    text-align-last: left;
+}
+#gnb .gnb_sub .inner_sub ul.gnb_menu li a.menu {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    padding: 8px 0 0 14px;  /* top right bottom left */
+    cursor: pointer;
+}
+
+#gnb .gnb_sub .ico {
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+#gnb .gnb_sub .ico img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 메뉴 아이콘 활성화/비활성화 */
+#gnb .gnb_sub .ico .ico_off { display: block; }
+#gnb .gnb_sub .ico .ico_on { display: none; }
+#gnb .gnb_sub .inner_sub ul.gnb_menu li:hover .ico_off { display: none; }
+#gnb .gnb_sub .inner_sub ul.gnb_menu li:hover .ico_on { display: block; } 
+#gnb .gnb_sub .inner_sub ul.gnb_menu li:hover .txt { color: #5f0080; font-weight: bold;}
+#gnb .gnb_sub .txt {
+    float: left;
+    padding: 0 4px 0 10px;
+    font-size: 14px;
+    color: #333;
+    line-height: 22px;
+    /* 공백 속성 : 줄바꿈 여부를 지정할 수 있다. (wrap : 줄바꿈, nowrap : 줄바꿈X) */
+    white-space: nowrap;
+}
+
+/* 2차 메뉴 */
+#gnb .gnb_sub .inner_sub ul.gnb_menu li ul.sub_menu {
+    position: absolute;
+    display: none;
+    left: 200px;
+    top: 0;
+    width: 248px;
+    height: 100%;
+    padding: 0 0 0 20px;
+    background: url(https://res.kurly.com/images/common/bg_1_1.gif) repeat 0 0;
+}
+#gnb .gnb_sub .inner_sub ul.gnb_menu li ul.sub_menu li {
+    width: 100%;
+    text-align: left;
+}
+#gnb .gnb_sub .inner_sub ul.gnb_menu li ul.sub_menu li:first-child {
+    padding-top: 11px;
+}
+#gnb .gnb_sub .inner_sub ul.gnb_menu li ul.sub_menu li a.sub {
+    display: block;
+    overflow: hidden;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #333;
+    line-height: 18px;
+    cursor: pointer;
+}   
+#gnb .gnb_sub .inner_sub ul.gnb_menu li ul.sub_menu li:hover a.sub span {
+    color: #5f0080;
+    border-bottom: 1px solid #5f0080;
+}
+
+
+
+
+
 section {
     width: 1050px;
     height: 400px;
     margin: 0 auto;
     border: 1px solid cornflowerblue;
 }
-
