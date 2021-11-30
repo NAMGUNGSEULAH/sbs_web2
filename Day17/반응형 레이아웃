@@ -5,15 +5,29 @@
 # 디바이스 종류
 1. PC (Big)
 2. PC
-3. 태블릿
-4. 모바일 가로
+3. 태블릿 가로
+4. 모바일 가로, 태블릿 세로
 5. 모바일 세로
 
 # 필요성
 - 해상도에 따라 가로 사이즈와 배치를 변경해서 웹 사이트의 가독성 높인다.
 
-# @media
+# @media (미디어 쿼리)
 : 스타일 시트의 일부를 하나 이상의 미디어 결과에 따라 적용하는 CSS 블록
+
+@media [only|not] 미디어타입 and (조건) { ... }
+
+* 미디어 타입 종류
+; - all       : 모든 미디어 타입
+- aural      : 음성 합성장치
+- bralle     : 점자 표시 장치
+- handheld   : 손으로 들고 다니는 작은 디스플레이
+- print      : 인쇄
+- projection : 프로젝터
+; - screen    :  디스플레이 스크린
+- tty        : 고정된 글자를 사용하는 미디어
+- tv         : 음성과 영상이 동시에 출력되는 장치
+- embrossed  : 페이지에 인쇄된 점자 표현 장치
 
 @media screen and ( max-width|min-width :  <size> )
 @media screen and ( width >= <size> )
@@ -22,7 +36,7 @@
 #최소 반응형 레이아웃
 
 /* PC */
-/* ~1024px */
+/* 1024px~ */
 
 /* 태블릿 */
 /* 768px ~ 1023px */
@@ -52,3 +66,61 @@
 /* 모바일(세로)*/
 /* ~599px */
 @media screen and (max-width: 599px) {}
+
+
+# 조건 속성
+
+- width, height (min/max)        : 웹 페이지의 가로/세로 길이를 조건으로 판단
+- device-width, device-height    : 장치의 물리적인 가로/세로 길이
+- orientation                    : width가 길면 landscpe, height가 길면 portrait
+- espect-ratio                   : width/height 비율을 판단
+- color                          : 장치의 최대 색상 수를 조건으로 판단
+
+
+
+# 뷰포트 (viewport)
+: 실제 컨텐츠들이 표시되는 영역
+
+<meta name="viewport" conten="width=device-width, initial-scale=1.0" >
+
+* width             : 뷰포트의 너비 설정   (200px~10000px)
+* initial-scale     : 초기 배율 설정      (0.0~10.0)
+* minimum-scale     : 최소 축소 비율 설정  (0.0~10.0)
+* maximum-scale     : 최대 축소 비율 설정  (0.0~10.0)
+* user-scalable     : 확대/축소 여부 설정  (yes | no)
+
+
+# 뷰포트 영역 확인하기
+# 웹 사이트 호스팅하기
+1. 닷홈 무료 호스팅 (회원가입)
+    - 메모장이나, keep.naver.com, keep.google.com 등에 FTP 계정 아이디,패스워드 메모하기
+    - FTP 계정 분실
+      > 마이닷홈 > 호스팅 관리 > 웹호스팅 목록 > 상세보기 > 암호
+2. ETP 프로그램 설치 (Filezilla)
+    - [파일] > 사이트 관리자 > New Site
+       > 정보입력 > 호스트 (도메인 URL), 사용자 (FTP ID), 비밀번호 (FTP PW)
+       > [연결]
+
+    - 왼쪽 영역은 나의 PC 디렉토리(파일 구조)
+    - 오른쪽 영역은 호스팅한 서버 디렉토리(파일 구조)
+
+    -서버 영역의 '/html' 폴더에 웹 사이트에 띄우고 싶은 파일을 업로드하기
+
+
+# CSS 에서 viewport 적용하기
+ - 표준 방식의 뷰포트 적용하는 법
+ - 사파리 브라우저에서 처음 시도한 <meta> 태그를 이용한 뷰포트 적용이 선호가 된다.
+
+@viewport  {
+    width: device-width;          
+    zoon: 1;                /* initial-scale 동일 */
+    min-zoon: 1;            /* minimum-scale 동일 */
+    max-zoon: 1;            /* maximum-scale 동일 */
+    user-zoon: zoon;        /* user-scalable 동일 */
+}
+
+
+# 반응형에 적합한 레이아웃 기술
+ - Flex Box (플렉서블 박스)
+ : 가변적인 박스를 만드는 레이아웃 기술이며,
+   박스를 손쉽게 배치할 수 있고 반응형 웹 사이트 적용에 가장 많이 사용되는 기술이다.
